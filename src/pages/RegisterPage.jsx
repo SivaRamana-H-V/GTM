@@ -159,7 +159,7 @@ export default function RegisterPage() {
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#fafafa] px-6">
-        <div className="text-center max-w-[420px]">
+        <div className="text-center max-w-105">
           <div className="w-16 h-16 bg-[#E8F5E9] rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 size={32} className="text-green-700" />
           </div>
@@ -227,7 +227,7 @@ export default function RegisterPage() {
           </div>
 
           {/* Bottom stats */}
-          <div className="flex gap-8 pb-4 border-t border-white/[0.12] pt-6">
+          <div className="flex gap-8 pb-4 border-t border-white/12 pt-6">
             <div>
               <p className="font-figtree font-black text-[28px] text-white">300</p>
               <p className="text-[12px] text-white/50">Builders selected</p>
@@ -257,7 +257,7 @@ export default function RegisterPage() {
           </Link>
         </div>
 
-        <div className="max-w-[580px] mx-auto px-6 md:px-10 py-10 md:py-14">
+        <div className="max-w-145 mx-auto px-6 md:px-10 py-10 md:py-14">
 
           {/* Header */}
           <div className="mb-10">
@@ -313,7 +313,7 @@ export default function RegisterPage() {
                   <input
                     id="isStudent" type="checkbox"
                     checked={fields.isStudent} onChange={set("isStudent")}
-                    className="w-4 h-4 border border-[#ddd] accent-[#05CE0D] cursor-pointer"
+                    className="w-4 h-4 border border-[#ddd] accent-primary cursor-pointer"
                   />
                   <label htmlFor="isStudent" className="text-[13px] text-[#555] cursor-pointer select-none">
                     I am a student
