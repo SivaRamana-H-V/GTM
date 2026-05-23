@@ -159,7 +159,7 @@ export default function RegisterPage() {
           <h1 className="font-figtree font-black text-[28px] text-dark mb-3">
             Thanks for your interest!
           </h1>
-          <p className="text-[15px] text-[#374151] leading-relaxed mb-2">
+          <p className="text-[15px] text-slate-700 leading-relaxed mb-2">
             We've received your application. If your signal is strong, we'll reach
             out with next steps.
           </p>
@@ -236,7 +236,7 @@ export default function RegisterPage() {
           <Link to="/">
             <img src={LOGO_SRC} alt="GTM Conclave" className="h-7 object-contain" />
           </Link>
-          <Link to="/" className="flex items-center gap-1 text-[13px] text-[#374151] hover:text-dark transition-colors">
+          <Link to="/" className="flex items-center gap-1 text-[13px] text-slate-700 hover:text-dark transition-colors">
             <ArrowLeft size={14} /> Back
           </Link>
         </div>
@@ -244,225 +244,225 @@ export default function RegisterPage() {
         <div className="max-w-145 mx-auto px-6 md:px-10 py-10 md:py-14">
 
           <AnimatedSection>
-          <div className="mb-10">
-            <p className="text-[11px] font-semibold tracking-widest uppercase text-[#999] mb-3">
-              GTM Conclave Sprint — Round 1
-            </p>
-            <h1 className="font-figtree font-black text-[28px] md:text-[34px] text-dark leading-tight mb-2">
-              Sign Up And Apply
-            </h1>
-            <p className="text-[14px] text-[#374151] leading-relaxed">
-              Fill out the application to share your interest, passion, and background.
-            </p>
-          </div>
+            <div className="mb-10">
+              <p className="text-[11px] font-semibold tracking-widest uppercase text-[#999] mb-3">
+                GTM Conclave Sprint — Round 1
+              </p>
+              <h1 className="font-figtree font-black text-[28px] md:text-[34px] text-dark leading-tight mb-2">
+                Sign Up And Apply
+              </h1>
+              <p className="text-[14px] text-slate-700 leading-relaxed">
+                Fill out the application to share your interest, passion, and background.
+              </p>
+            </div>
           </AnimatedSection>
 
           <form onSubmit={handleSubmit} noValidate className="space-y-6">
 
             <AnimatedItem delay={0}>
-            <fieldset>
-              <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
-                Personal Information
-              </legend>
-              <div className="space-y-4">
-                <div className={errors.name ? "field-error-anchor" : ""}>
-                  <Label htmlFor="name" required>Full Name</Label>
-                  <Input
-                    id="name" placeholder="Enter your Name"
-                    value={fields.name} onChange={set("name")} error={errors.name}
-                  />
+              <fieldset>
+                <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
+                  Personal Information
+                </legend>
+                <div className="space-y-4">
+                  <div className={errors.name ? "field-error-anchor" : ""}>
+                    <Label htmlFor="name" required>Full Name</Label>
+                    <Input
+                      id="name" placeholder="Enter your Name"
+                      value={fields.name} onChange={set("name")} error={errors.name}
+                    />
+                  </div>
+                  <div className={errors.email ? "field-error-anchor" : ""}>
+                    <Label htmlFor="email" required>Email</Label>
+                    <Input
+                      id="email" type="email" placeholder="Enter your Email"
+                      value={fields.email} onChange={set("email")} error={errors.email}
+                    />
+                  </div>
+                  <div className={errors.mobile ? "field-error-anchor" : ""}>
+                    <Label htmlFor="mobile" required>Mobile Number</Label>
+                    <Input
+                      id="mobile" type="tel" placeholder="10-digit mobile number"
+                      value={fields.mobile} onChange={set("mobile")} error={errors.mobile}
+                      maxLength={10}
+                    />
+                  </div>
+                  <div className={errors.city ? "field-error-anchor" : ""}>
+                    <Label htmlFor="city" required>City</Label>
+                    <Input
+                      id="city" placeholder="Enter your City"
+                      value={fields.city} onChange={set("city")} error={errors.city}
+                    />
+                  </div>
+                  <div className="flex items-center gap-2.5 py-1">
+                    <input
+                      id="isStudent" type="checkbox"
+                      checked={fields.isStudent} onChange={set("isStudent")}
+                      className="w-4 h-4 border border-[#ddd] accent-[#009E52] cursor-pointer"
+                    />
+                    <label htmlFor="isStudent" className="text-[13px] text-slate-700 cursor-pointer select-none">
+                      I am a student
+                    </label>
+                  </div>
                 </div>
-                <div className={errors.email ? "field-error-anchor" : ""}>
-                  <Label htmlFor="email" required>Email</Label>
-                  <Input
-                    id="email" type="email" placeholder="Enter your Email"
-                    value={fields.email} onChange={set("email")} error={errors.email}
-                  />
-                </div>
-                <div className={errors.mobile ? "field-error-anchor" : ""}>
-                  <Label htmlFor="mobile" required>Mobile Number</Label>
-                  <Input
-                    id="mobile" type="tel" placeholder="10-digit mobile number"
-                    value={fields.mobile} onChange={set("mobile")} error={errors.mobile}
-                    maxLength={10}
-                  />
-                </div>
-                <div className={errors.city ? "field-error-anchor" : ""}>
-                  <Label htmlFor="city" required>City</Label>
-                  <Input
-                    id="city" placeholder="Enter your City"
-                    value={fields.city} onChange={set("city")} error={errors.city}
-                  />
-                </div>
-                <div className="flex items-center gap-2.5 py-1">
-                  <input
-                    id="isStudent" type="checkbox"
-                    checked={fields.isStudent} onChange={set("isStudent")}
-                    className="w-4 h-4 border border-[#ddd] accent-[#009E52] cursor-pointer"
-                  />
-                  <label htmlFor="isStudent" className="text-[13px] text-[#374151] cursor-pointer select-none">
-                    I am a student
-                  </label>
-                </div>
-              </div>
-            </fieldset>
+              </fieldset>
             </AnimatedItem>
 
             <AnimatedItem delay={100}>
-            <fieldset>
-              <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
-                Your Online Presence
-              </legend>
-              <div className="space-y-4">
-                <div className={errors.linkedin ? "field-error-anchor" : ""}>
-                  <Label htmlFor="linkedin" required>LinkedIn URL</Label>
-                  <Input
-                    id="linkedin" type="url"
-                    placeholder="e.g. John Doe - linkedin.com/in/johndoe"
-                    value={fields.linkedin} onChange={set("linkedin")} error={errors.linkedin}
-                  />
+              <fieldset>
+                <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
+                  Your Online Presence
+                </legend>
+                <div className="space-y-4">
+                  <div className={errors.linkedin ? "field-error-anchor" : ""}>
+                    <Label htmlFor="linkedin" required>LinkedIn URL</Label>
+                    <Input
+                      id="linkedin" type="url"
+                      placeholder="e.g. John Doe - linkedin.com/in/johndoe"
+                      value={fields.linkedin} onChange={set("linkedin")} error={errors.linkedin}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="twitter">Twitter / X Handle</Label>
+                    <Input
+                      id="twitter" placeholder="@yourhandle"
+                      value={fields.twitter} onChange={set("twitter")} error={errors.twitter}
+                    />
+                  </div>
+                  <div className={errors.portfolio ? "field-error-anchor" : ""}>
+                    <Label htmlFor="portfolio" required>Portfolio URL</Label>
+                    <Input
+                      id="portfolio" type="url"
+                      placeholder="What is the link to your portfolio? (past projects/Github repo, etc)"
+                      value={fields.portfolio} onChange={set("portfolio")} error={errors.portfolio}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <Label htmlFor="twitter">Twitter / X Handle</Label>
-                  <Input
-                    id="twitter" placeholder="@yourhandle"
-                    value={fields.twitter} onChange={set("twitter")} error={errors.twitter}
-                  />
-                </div>
-                <div className={errors.portfolio ? "field-error-anchor" : ""}>
-                  <Label htmlFor="portfolio" required>Portfolio URL</Label>
-                  <Input
-                    id="portfolio" type="url"
-                    placeholder="What is the link to your portfolio? (past projects/Github repo, etc)"
-                    value={fields.portfolio} onChange={set("portfolio")} error={errors.portfolio}
-                  />
-                </div>
-              </div>
-            </fieldset>
+              </fieldset>
             </AnimatedItem>
 
             <AnimatedItem delay={200}>
-            <fieldset>
-              <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
-                Builder Signal
-              </legend>
-              <div className="space-y-4">
-                <div className={errors.vibeProject ? "field-error-anchor" : ""}>
-                  <Label htmlFor="vibeProject" required>
-                    Share the link to your best vibe-coded project so far
-                  </Label>
-                  <Input
-                    id="vibeProject" type="url"
-                    placeholder="https://..."
-                    value={fields.vibeProject} onChange={set("vibeProject")} error={errors.vibeProject}
-                  />
+              <fieldset>
+                <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
+                  Builder Signal
+                </legend>
+                <div className="space-y-4">
+                  <div className={errors.vibeProject ? "field-error-anchor" : ""}>
+                    <Label htmlFor="vibeProject" required>
+                      Share the link to your best vibe-coded project so far
+                    </Label>
+                    <Input
+                      id="vibeProject" type="url"
+                      placeholder="https://..."
+                      value={fields.vibeProject} onChange={set("vibeProject")} error={errors.vibeProject}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="videoLink">
+                      Video Pitch Link{" "}
+                      <span className="font-normal text-[#999]">(optional for Round 1)</span>
+                    </Label>
+                    <Input
+                      id="videoLink" type="url"
+                      placeholder="YouTube / Loom link — 60 to 90 seconds"
+                      value={fields.videoLink} onChange={set("videoLink")} error={errors.videoLink}
+                    />
+                    <p className="mt-1.5 text-[12px] text-[#999]">
+                      Keep it 60 to 90 seconds. We are not evaluating production quality.
+                      We are evaluating clarity of thought and conviction.
+                    </p>
+                  </div>
+                  <div>
+                    <Label htmlFor="socialPost">
+                      Public Social Post Link{" "}
+                      <span className="font-normal text-[#999]">(optional but encouraged)</span>
+                    </Label>
+                    <Input
+                      id="socialPost" type="url"
+                      placeholder="Link to your public pitch post"
+                      value={fields.socialPost} onChange={set("socialPost")} error={errors.socialPost}
+                    />
+                    <p className="mt-1.5 text-[12px] text-[#999]">
+                      Share your video publicly and tag @emergentlabs.
+                      Public submissions may receive additional evaluation signal.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <Label htmlFor="videoLink">
-                    Video Pitch Link{" "}
-                    <span className="font-normal text-[#999]">(optional for Round 1)</span>
-                  </Label>
-                  <Input
-                    id="videoLink" type="url"
-                    placeholder="YouTube / Loom link — 60 to 90 seconds"
-                    value={fields.videoLink} onChange={set("videoLink")} error={errors.videoLink}
-                  />
-                  <p className="mt-1.5 text-[12px] text-[#999]">
-                    Keep it 60 to 90 seconds. We are not evaluating production quality.
-                    We are evaluating clarity of thought and conviction.
-                  </p>
-                </div>
-                <div>
-                  <Label htmlFor="socialPost">
-                    Public Social Post Link{" "}
-                    <span className="font-normal text-[#999]">(optional but encouraged)</span>
-                  </Label>
-                  <Input
-                    id="socialPost" type="url"
-                    placeholder="Link to your public pitch post"
-                    value={fields.socialPost} onChange={set("socialPost")} error={errors.socialPost}
-                  />
-                  <p className="mt-1.5 text-[12px] text-[#999]">
-                    Share your video publicly and tag @emergentlabs.
-                    Public submissions may receive additional evaluation signal.
-                  </p>
-                </div>
-              </div>
-            </fieldset>
+              </fieldset>
             </AnimatedItem>
 
             <AnimatedItem delay={300}>
-            <fieldset>
-              <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
-                Attendance
-              </legend>
-              <div className="space-y-4">
-                <div className={errors.attendance ? "field-error-anchor" : ""}>
-                  <Label htmlFor="attendance" required>
-                    If selected, will you attend solo or as a team?
-                  </Label>
-                  <Select
-                    id="attendance"
-                    value={fields.attendance} onChange={set("attendance")} error={errors.attendance}
-                  >
-                    <option value="" disabled>Select one</option>
-                    <option value="solo">Solo</option>
-                    <option value="team">Team</option>
-                  </Select>
-                </div>
-                {fields.attendance === "team" && (
-                  <div>
-                    <Label htmlFor="teamDetails">Team Details</Label>
-                    <textarea
-                      id="teamDetails"
-                      placeholder="Team members' names and LinkedIn URLs. If you get selected, the entire team gets selected."
-                      value={fields.teamDetails}
-                      onChange={set("teamDetails")}
-                      rows={3}
-                      className="w-full px-3.5 py-2.5 text-[14px] text-dark
+              <fieldset>
+                <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
+                  Attendance
+                </legend>
+                <div className="space-y-4">
+                  <div className={errors.attendance ? "field-error-anchor" : ""}>
+                    <Label htmlFor="attendance" required>
+                      If selected, will you attend solo or as a team?
+                    </Label>
+                    <Select
+                      id="attendance"
+                      value={fields.attendance} onChange={set("attendance")} error={errors.attendance}
+                    >
+                      <option value="" disabled>Select one</option>
+                      <option value="solo">Solo</option>
+                      <option value="team">Team</option>
+                    </Select>
+                  </div>
+                  {fields.attendance === "team" && (
+                    <div>
+                      <Label htmlFor="teamDetails">Team Details</Label>
+                      <textarea
+                        id="teamDetails"
+                        placeholder="Team members' names and LinkedIn URLs. If you get selected, the entire team gets selected."
+                        value={fields.teamDetails}
+                        onChange={set("teamDetails")}
+                        rows={3}
+                        className="w-full px-3.5 py-2.5 text-[14px] text-dark
                         border border-[#ddd] outline-none resize-none
                         placeholder:text-[#aaa]
                         focus:border-[#009E52] focus:ring-2 focus:ring-[#009E52]/10
                         hover:border-[#bbb] transition-all duration-150"
-                    />
-                  </div>
-                )}
-              </div>
-            </fieldset>
+                      />
+                    </div>
+                  )}
+                </div>
+              </fieldset>
             </AnimatedItem>
 
             <AnimatedItem delay={400}>
-            <div className="pt-2">
-              {Object.keys(errors).length > 0 && (
-                <p className="flex items-center gap-2 text-[13px] text-red-600 mb-4">
-                  <AlertCircle size={14} />
-                  Please fix the errors above before submitting.
-                </p>
-              )}
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full flex items-center justify-center gap-2
+              <div className="pt-2">
+                {Object.keys(errors).length > 0 && (
+                  <p className="flex items-center gap-2 text-[13px] text-red-600 mb-4">
+                    <AlertCircle size={14} />
+                    Please fix the errors above before submitting.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full flex items-center justify-center gap-2
                   bg-primary hover:bg-[#0B2265] disabled:opacity-50
                   text-white font-semibold text-[15px]
                   py-4 transition-all duration-200 rounded-full"
-              >
-                {submitting ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" />
-                    Submitting…
-                  </>
-                ) : (
-                  <>
-                    Submit Application
-                    <ArrowRight size={16} />
-                  </>
-                )}
-              </button>
-              <p className="mt-3 text-center text-[12px] text-[#999]">
-                By submitting, you agree that all information provided is accurate.
-              </p>
-            </div>
+                >
+                  {submitting ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      Submitting…
+                    </>
+                  ) : (
+                    <>
+                      Submit Application
+                      <ArrowRight size={16} />
+                    </>
+                  )}
+                </button>
+                <p className="mt-3 text-center text-[12px] text-[#999]">
+                  By submitting, you agree that all information provided is accurate.
+                </p>
+              </div>
             </AnimatedItem>
 
           </form>
