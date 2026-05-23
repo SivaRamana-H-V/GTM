@@ -18,13 +18,13 @@ export const Navbar = () => {
 
         <div className="flex items-center gap-3 shrink-0">
           <img
-            src="/public/assets/logo.png"
+            src="/assets/Logo.png"
             alt="AIIF Logo"
             className="h-6 w-auto object-contain"
           />
           |
           <img
-            src="/public/assets/Build.png"
+            src="/assets/Build.png"
             alt="BUILD BEFORE YOUR BURN"
             className="h-12 w-auto object-contain"
           />
