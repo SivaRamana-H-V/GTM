@@ -31,8 +31,8 @@ function ScrollReset() {
 // Full-screen loading fallback — minimal, non-jarring
 function PageLoader() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white">
-      <div className="w-5 h-5 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-[#F4F9F5]">
+        <div className="w-5 h-5 rounded-full border-2 border-[#009E52] border-t-transparent animate-spin" />
     </div>
   );
 }
@@ -42,7 +42,7 @@ function PageLoader() {
 // standard footer — handle per-page opt-out via the page itself if needed.
 function AppShell() {
   return (
-    <div className="flex flex-col min-h-screen font-figtree">
+    <div className="flex flex-col min-h-screen font-figtree bg-[#F4F9F5]">
       <SparkleCanvas />
       <Navbar />
       <main className="flex-1">

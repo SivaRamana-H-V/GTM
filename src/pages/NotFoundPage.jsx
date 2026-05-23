@@ -57,16 +57,16 @@ export default function NotFoundPage() {
             className="inline-flex items-center gap-2 justify-center
               bg-white hover:bg-[#f0f0f0] text-dark
               font-bold text-[15px]
-              px-7 py-3.5 transition-all duration-200"
+              px-7 py-3.5 transition-all duration-200 rounded-full"
           >
             <Home size={16} /> Back to Home
           </Link>
           <Link
             to="/register"
             className="inline-flex items-center gap-2 justify-center
-              bg-primary hover:bg-[#1a47d6] text-white
+              bg-primary hover:bg-[#0B2265] text-white
               font-bold text-[15px]
-              px-7 py-3.5 transition-all duration-200"
+              px-7 py-3.5 transition-all duration-200 rounded-full"
           >
             Apply Now <ArrowRight size={16} />
           </Link>

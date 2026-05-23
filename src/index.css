@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #05CE0D;
-  --color-dark: #0a0a0a;
+  --color-primary: #009e52;
+  --color-secondary: #1035a1;
+  --color-navy: #0b2265;
+  --color-dark: #111827;
+  --color-mint: #f4f9f5;
+  --color-slate-700: #374151;
   --animate-infinite-scroll: infinite-scroll 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
 
   @keyframes infinite-scroll {
     from {
@@ -13,6 +19,16 @@
       transform: translateX(-50%);
     }
   }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
 }
 
 @layer base {
@@ -20,11 +36,34 @@
     font-family: "Figtree", "Inter", system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scrollbar-width: thin; /* Clean, modern thin profile for Firefox */
+    scrollbar-color: #009e52 transparent; /* Emerald track thumb over a transparent base */
+  }
+  /* Chrome, Safari, Edge, and Opera engines */
+  ::-webkit-scrollbar {
+    width: 6px; /* Super thin, low-profile vertical footprint width */
+    height: 6px; /* Horizontal footprint height */
+  }
+
+  /* The actual sliding handle track node */
+  ::-webkit-scrollbar-thumb {
+    background-color: #009e52; /* Match your brand's vibrant Emerald Green */
+    border-radius: 9999px; /* Smooth capsule pill profile finish */
+  }
+
+  /* Optional: Soften the slider background on active hover state */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #1035a1; /* Shifts to brand Royal Navy on mouse hover */
+  }
+
+  /* The background channel track behind the handle */
+  ::-webkit-scrollbar-track {
+    background: #f4f9f5; /* Matches your ultra-light Mint page backdrop */
   }
 
   body {
-    background-color: var(--color-white, #fff);
-    color: var(--color-dark, #0a0a0a);
+    background-color: var(--color-mint, #f4f9f5);
+    color: var(--color-dark, #111827);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -41,5 +80,8 @@
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+  .text-balance {
+    text-wrap: balance;
   }
 }

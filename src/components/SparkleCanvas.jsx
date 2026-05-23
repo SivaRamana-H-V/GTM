@@ -10,10 +10,8 @@ export const SparkleCanvas = () => {
         const ctx = canvas.getContext('2d');
         let particles = [];
 
-        // GTM Conclave Brand Palette: Emerald Green, Deep Blues, Cyan
-        const colors = ['#10b981', '#059669', '#2563eb', '#1d4ed8', '#06b6d4'];
+        const colors = ['#009E52', '#00B85E', '#1035A1', '#0B2265', '#06b6d4'];
 
-        // Track frame loop reference for safe cleanup
         let animationFrameId;
 
         const resizeCanvas = () => {
@@ -41,8 +39,8 @@ export const SparkleCanvas = () => {
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-                this.vy += 0.04;     // Soft downward gravity drag
-                this.alpha -= 0.025; // Fade rate calculation matrix
+                this.vy += 0.04;
+                this.alpha -= 0.025;
             }
 
             draw() {
@@ -50,7 +48,6 @@ export const SparkleCanvas = () => {
                 ctx.globalAlpha = this.alpha;
                 ctx.fillStyle = this.color;
 
-                // Neon ambient outer bloom glow profile setup
                 ctx.shadowBlur = 12;
                 ctx.shadowColor = this.color;
 
@@ -87,7 +84,6 @@ export const SparkleCanvas = () => {
 
         animate();
 
-        // ── CRITICAL CLEANUP: Prevents duplicate listeners & memory leaks on route changes ──
         return () => {
             window.removeEventListener('resize', resizeCanvas);
             window.removeEventListener('mousedown', handleMouseDown);

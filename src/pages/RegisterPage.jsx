@@ -2,15 +2,14 @@
 import React, { useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ArrowRight, AlertCircle, CheckCircle2, Loader2, Upload, Eye, EyeOff } from "lucide-react";
+import { AnimatedSection, AnimatedItem } from "../components/Components";
 
-// Left-panel background image (from the bundle)
 const LEFT_BG =
   "https://customer-assets.emergentagent.com/job_0903dfad-c388-4a74-a78e-6788911143a8/artifacts/6g0d14a4_left%20field%20form.jpg";
 
 const LOGO_SRC =
   "https://customer-assets.emergentagent.com/job_0903dfad-c388-4a74-a78e-6788911143a8/artifacts/4ei0pm8y_vibeconlogo%20%281%29.png";
 
-// ─── Form field helpers ───────────────────────────────────────────────────────
 function FieldError({ msg }) {
   if (!msg) return null;
   return (
@@ -43,7 +42,7 @@ function Input({ id, type = "text", placeholder, value, onChange, error, ...rest
           "w-full px-3.5 py-2.5 text-[14px] text-dark",
           "border outline-none transition-all duration-150",
           "placeholder:text-[#aaa]",
-          "focus:border-primary focus:ring-2 focus:ring-primary/10",
+          "focus:border-[#009E52] focus:ring-2 focus:ring-[#009E52]/10",
           error
             ? "border-red-400 bg-red-50/30"
             : "border-[#ddd] bg-white hover:border-[#bbb]",
@@ -65,7 +64,7 @@ function Select({ id, value, onChange, children, error }) {
         className={[
           "w-full bg-white px-3 py-2.5 text-[14px] text-dark cursor-pointer",
           "border outline-none transition-all duration-150 appearance-none",
-          "focus:border-primary focus:ring-2 focus:ring-primary/10",
+          "focus:border-[#009E52] focus:ring-2 focus:ring-[#009E52]/10",
           error
             ? "border-red-400 bg-red-50/30"
             : "border-[#ddd] hover:border-[#bbb]",
@@ -78,7 +77,6 @@ function Select({ id, value, onChange, children, error }) {
   );
 }
 
-// ─── Validation ───────────────────────────────────────────────────────────────
 function validate(fields) {
   const errs = {};
   if (!fields.name || fields.name.trim().length < 2)
@@ -100,7 +98,6 @@ function validate(fields) {
   return errs;
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 const INITIAL_FIELDS = {
   name: "",
   email: "",
@@ -128,7 +125,6 @@ export default function RegisterPage() {
   const set = useCallback((key) => (e) => {
     const val = e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setFields((prev) => ({ ...prev, [key]: val }));
-    // Clear error on change
     if (errors[key]) setErrors((prev) => { const n = { ...prev }; delete n[key]; return n; });
   }, [errors]);
 
@@ -137,17 +133,14 @@ export default function RegisterPage() {
     const errs = validate(fields);
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
-      // Scroll to first error
       const firstErrEl = document.querySelector(".field-error-anchor");
       if (firstErrEl) firstErrEl.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     setSubmitting(true);
-    // Simulate async submission (replace with real API call)
     await new Promise((r) => setTimeout(r, 1600));
     setSubmitting(false);
     setSubmitted(true);
-    // Redirect countdown
     let c = 5;
     const timer = setInterval(() => {
       c -= 1;
@@ -158,7 +151,7 @@ export default function RegisterPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#fafafa] px-6">
+      <div className="min-h-screen flex items-center justify-center bg-[#F4F9F5] px-6">
         <div className="text-center max-w-105">
           <div className="w-16 h-16 bg-[#E8F5E9] rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 size={32} className="text-green-700" />
@@ -166,14 +159,14 @@ export default function RegisterPage() {
           <h1 className="font-figtree font-black text-[28px] text-dark mb-3">
             Thanks for your interest!
           </h1>
-          <p className="text-[15px] text-[#555] leading-relaxed mb-2">
+          <p className="text-[15px] text-[#374151] leading-relaxed mb-2">
             We've received your application. If your signal is strong, we'll reach
             out with next steps.
           </p>
           <p className="text-[13px] text-[#999]">
             Submitted! Redirecting home in {countdown}…
           </p>
-          <Link to="/" className="mt-6 inline-block text-[14px] text-primary hover:underline font-medium">
+          <Link to="/" className="mt-6 inline-block text-[14px] text-[#009E52] hover:underline font-medium">
             ← Back to Home
           </Link>
         </div>
@@ -182,38 +175,32 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-white">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-[#F4F9F5]">
 
-      {/* ── Left panel — fixed image + pitch ── */}
       <aside
         className="hidden lg:flex fixed top-0 left-0 h-screen lg:w-[38%] xl:w-[35%]
           flex-col justify-between overflow-hidden z-0"
       >
-        {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${LEFT_BG})` }}
         />
-        {/* Overlay */}
         <div className="absolute inset-0 bg-black/55" />
 
-        {/* Content over image */}
-        <div className="relative z-10 flex flex-col h-full px-10 xl:px-12 py-10">
-          {/* Logo */}
+        <AnimatedSection className="relative z-10 flex flex-col h-full px-10 xl:px-12 py-10">
           <Link to="/">
-            <img src={LOGO_SRC} alt="VibeCon" className="h-8 object-contain brightness-0 invert" />
+            <img src={LOGO_SRC} alt="GTM Conclave" className="h-8 object-contain brightness-0 invert" />
           </Link>
 
-          {/* Middle copy */}
           <div className="flex-1 flex flex-col justify-center">
             <p className="text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-4">
-              VibeCon 2026
+              GTM Conclave 2026
             </p>
             <h2 className="font-figtree font-black text-[36px] xl:text-[42px] text-white leading-tight mb-5">
-              Vibecode your way to Y Combinator.
+              BUILD BEFORE YOUR BURN.
             </h2>
             <p className="text-[15px] text-white/70 leading-relaxed mb-8">
-              Most events work like this: You fill a form and wait. VibeCon does
+              Most events work like this: You fill a form and wait. GTM Conclave does
               not work like that. You are not selected because you applied. You are
               selected because you proved that you belong.
             </p>
@@ -226,7 +213,6 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          {/* Bottom stats */}
           <div className="flex gap-8 pb-4 border-t border-white/12 pt-6">
             <div>
               <p className="font-figtree font-black text-[28px] text-white">300</p>
@@ -241,40 +227,39 @@ export default function RegisterPage() {
               <p className="text-[12px] text-white/50">YC interview spot</p>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
       </aside>
 
-      {/* ── Right panel — scrollable form ── */}
       <main className="flex-1 lg:ml-[38%] xl:ml-[35%] min-h-screen">
 
-        {/* Mobile logo bar */}
         <div className="lg:hidden flex items-center justify-between px-6 py-5 border-b border-black/6">
           <Link to="/">
-            <img src={LOGO_SRC} alt="VibeCon" className="h-7 object-contain" />
+            <img src={LOGO_SRC} alt="GTM Conclave" className="h-7 object-contain" />
           </Link>
-          <Link to="/" className="flex items-center gap-1 text-[13px] text-[#555] hover:text-dark transition-colors">
+          <Link to="/" className="flex items-center gap-1 text-[13px] text-[#374151] hover:text-dark transition-colors">
             <ArrowLeft size={14} /> Back
           </Link>
         </div>
 
         <div className="max-w-145 mx-auto px-6 md:px-10 py-10 md:py-14">
 
-          {/* Header */}
+          <AnimatedSection>
           <div className="mb-10">
             <p className="text-[11px] font-semibold tracking-widest uppercase text-[#999] mb-3">
-              VibeCon Sprint — Round 1
+              GTM Conclave Sprint — Round 1
             </p>
             <h1 className="font-figtree font-black text-[28px] md:text-[34px] text-dark leading-tight mb-2">
               Sign Up And Apply
             </h1>
-            <p className="text-[14px] text-[#666] leading-relaxed">
+            <p className="text-[14px] text-[#374151] leading-relaxed">
               Fill out the application to share your interest, passion, and background.
             </p>
           </div>
+          </AnimatedSection>
 
           <form onSubmit={handleSubmit} noValidate className="space-y-6">
 
-            {/* Personal Info */}
+            <AnimatedItem delay={0}>
             <fieldset>
               <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
                 Personal Information
@@ -313,16 +298,17 @@ export default function RegisterPage() {
                   <input
                     id="isStudent" type="checkbox"
                     checked={fields.isStudent} onChange={set("isStudent")}
-                    className="w-4 h-4 border border-[#ddd] accent-primary cursor-pointer"
+                    className="w-4 h-4 border border-[#ddd] accent-[#009E52] cursor-pointer"
                   />
-                  <label htmlFor="isStudent" className="text-[13px] text-[#555] cursor-pointer select-none">
+                  <label htmlFor="isStudent" className="text-[13px] text-[#374151] cursor-pointer select-none">
                     I am a student
                   </label>
                 </div>
               </div>
             </fieldset>
+            </AnimatedItem>
 
-            {/* Socials & Links */}
+            <AnimatedItem delay={100}>
             <fieldset>
               <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
                 Your Online Presence
@@ -353,8 +339,9 @@ export default function RegisterPage() {
                 </div>
               </div>
             </fieldset>
+            </AnimatedItem>
 
-            {/* Builder Signal */}
+            <AnimatedItem delay={200}>
             <fieldset>
               <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
                 Builder Signal
@@ -402,8 +389,9 @@ export default function RegisterPage() {
                 </div>
               </div>
             </fieldset>
+            </AnimatedItem>
 
-            {/* Attendance */}
+            <AnimatedItem delay={300}>
             <fieldset>
               <legend className="text-[11px] font-bold tracking-widest uppercase text-[#999] mb-5 pb-3 border-b border-[#f0f0f0] w-full">
                 Attendance
@@ -434,15 +422,16 @@ export default function RegisterPage() {
                       className="w-full px-3.5 py-2.5 text-[14px] text-dark
                         border border-[#ddd] outline-none resize-none
                         placeholder:text-[#aaa]
-                        focus:border-primary focus:ring-2 focus:ring-primary/10
+                        focus:border-[#009E52] focus:ring-2 focus:ring-[#009E52]/10
                         hover:border-[#bbb] transition-all duration-150"
                     />
                   </div>
                 )}
               </div>
             </fieldset>
+            </AnimatedItem>
 
-            {/* Submit */}
+            <AnimatedItem delay={400}>
             <div className="pt-2">
               {Object.keys(errors).length > 0 && (
                 <p className="flex items-center gap-2 text-[13px] text-red-600 mb-4">
@@ -454,9 +443,9 @@ export default function RegisterPage() {
                 type="submit"
                 disabled={submitting}
                 className="w-full flex items-center justify-center gap-2
-                  bg-dark hover:bg-[#222] disabled:opacity-50
+                  bg-primary hover:bg-[#0B2265] disabled:opacity-50
                   text-white font-semibold text-[15px]
-                  py-4 transition-all duration-200"
+                  py-4 transition-all duration-200 rounded-full"
               >
                 {submitting ? (
                   <>
@@ -474,6 +463,7 @@ export default function RegisterPage() {
                 By submitting, you agree that all information provided is accurate.
               </p>
             </div>
+            </AnimatedItem>
 
           </form>
         </div>

@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, Loader2, AlertCircle, MapPin, Bell } from "lucide-react";
+import { AnimatedSection, AnimatedItem } from "../components/Components";
 
 const LOGO_SRC =
   "https://customer-assets.emergentagent.com/job_0903dfad-c388-4a74-a78e-6788911143a8/artifacts/4ei0pm8y_vibeconlogo%20%281%29.png";
@@ -9,7 +10,6 @@ const LOGO_SRC =
 const CITYSCAPE_SRC =
   "https://customer-assets.emergentagent.com/job_vibebattle-india/artifacts/97aca0il_Rectangle%20240662915.png";
 
-// ─── Validation ───────────────────────────────────────────────────────────────
 function validateJoinNext(f) {
   const e = {};
   if (!f.name || f.name.trim().length < 2)
@@ -21,7 +21,6 @@ function validateJoinNext(f) {
   return e;
 }
 
-// ─── Mini input for this page ──────────────────────────────────────────────────
 function Field({ label, id, type = "text", placeholder, value, onChange, error, hint }) {
   return (
     <div>
@@ -35,7 +34,7 @@ function Field({ label, id, type = "text", placeholder, value, onChange, error, 
           "w-full px-3.5 py-2.5 text-[14px] text-dark",
           "border outline-none transition-all duration-150",
           "placeholder:text-[#aaa]",
-          "focus:border-primary focus:ring-2 focus:ring-primary/10",
+          "focus:border-[#009E52] focus:ring-2 focus:ring-[#009E52]/10",
           error
             ? "border-red-400 bg-red-50/30"
             : "border-[#ddd] bg-white hover:border-[#bbb]",
@@ -54,7 +53,6 @@ function Field({ label, id, type = "text", placeholder, value, onChange, error, 
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function JoinNextPage() {
   const [fields, setFields] = useState({ name: "", email: "", city: "" });
   const [errors, setErrors] = useState({});
@@ -71,26 +69,24 @@ export default function JoinNextPage() {
     const errs = validateJoinNext(fields);
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1400)); // simulate API
+    await new Promise((r) => setTimeout(r, 1400));
     setLoading(false);
     setDone(true);
   };
 
   return (
-    <div className="min-h-screen bg-white">
-
+    <div className="min-h-screen bg-[#F4F9F5]">
 
       <main>
 
-        {/* ── Hero ── */}
-        <section className="py-16 md:py-24 bg-[#fafafa] border-b border-black/6">
+        <AnimatedSection>
+        <section className="py-16 md:py-24 bg-white border-b border-[#009E52]/10">
           <div className="max-w-250 mx-auto px-6 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-              {/* Left — copy + form */}
               <div>
-                <div className="inline-flex items-center gap-2 bg-white border border-black/8
-                  text-[#555] text-[12px] font-semibold uppercase tracking-widest px-4 py-2 mb-8">
+                <div className="inline-flex items-center gap-2 bg-white border border-[#009E52]/20
+                  text-[#374151] text-[12px] font-semibold uppercase tracking-widest px-4 py-2 mb-8">
                   <Bell size={13} />
                   Next Edition
                 </div>
@@ -98,36 +94,34 @@ export default function JoinNextPage() {
                   text-dark leading-tight mb-4">
                   Missed this edition?
                 </h1>
-                <p className="text-[16px] text-[#555] leading-relaxed mb-10">
-                  Sign up and we'll notify you when the next VibeCon is announced.
+                <p className="text-[16px] text-[#374151] leading-relaxed mb-10">
+                  Sign up and we'll notify you when the next GTM Conclave is announced.
                   No spam — just one email when it matters.
                 </p>
 
                 {done ? (
-                  /* Success state */
-                  <div className="bg-white border border-black/8 p-8">
+                  <div className="bg-white border border-[#009E52]/10 p-8">
                     <div className="flex items-center gap-3 mb-4">
                       <CheckCircle2 size={24} className="text-green-600 shrink-0" />
                       <h2 className="font-figtree font-bold text-[18px] text-dark">
                         You're on the list!
                       </h2>
                     </div>
-                    <p className="text-[14px] text-[#555] leading-relaxed mb-6">
+                    <p className="text-[14px] text-[#374151] leading-relaxed mb-6">
                       We've noted your details. We'll reach out when the next edition
-                      of VibeCon is announced. Stay tuned!
+                      of GTM Conclave is announced. Stay tuned!
                     </p>
                     <Link
                       to="/"
                       className="inline-flex items-center gap-2
-                        bg-primary hover:bg-[#1a47d6] text-white
+                        bg-primary hover:bg-[#0B2265] text-white
                         font-semibold text-[14px]
-                        px-6 py-3 transition-all duration-200"
+                        px-6 py-3 transition-all duration-200 rounded-full"
                     >
                       Back to Home <ArrowRight size={15} />
                     </Link>
                   </div>
                 ) : (
-                  /* Sign up form */
                   <form onSubmit={handleSubmit} noValidate className="space-y-4">
                     <Field
                       id="jn-name" label="Full Name"
@@ -149,9 +143,9 @@ export default function JoinNextPage() {
                       type="submit"
                       disabled={loading}
                       className="w-full flex items-center justify-center gap-2
-                        bg-dark hover:bg-[#222] disabled:opacity-50
+                        bg-primary hover:bg-[#0B2265] disabled:opacity-50
                         text-white font-semibold text-[15px]
-                        py-3.5 transition-all duration-200 mt-2"
+                        py-3.5 transition-all duration-200 rounded-full mt-2"
                     >
                       {loading ? (
                         <><Loader2 size={16} className="animate-spin" /> Signing you up…</>
@@ -160,25 +154,23 @@ export default function JoinNextPage() {
                       )}
                     </button>
                     <p className="text-[12px] text-[#999] text-center">
-                      No spam. One email when the next VibeCon launches.
+                      No spam. One email when the next GTM Conclave launches.
                     </p>
                   </form>
                 )}
               </div>
 
-              {/* Right — cityscape visual */}
               <div id="join-next-cityscape" className="relative hidden lg:block">
                 <img
                   src={CITYSCAPE_SRC}
                   alt="India builders"
                   className="w-full h-120 object-cover"
                 />
-                {/* City overlay card */}
                 <div className="absolute bottom-6 left-6 right-6
-                  bg-white/95 backdrop-blur border border-black/8
+                  bg-white/95 backdrop-blur border border-[#009E52]/10
                   px-6 py-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <MapPin size={14} className="text-primary" />
+                    <MapPin size={14} className="text-[#009E52]" />
                     <span className="text-[11px] font-semibold uppercase tracking-widest text-[#999]">
                       Builder Cities
                     </span>
@@ -186,7 +178,7 @@ export default function JoinNextPage() {
                   <div className="flex flex-wrap gap-2">
                     {["Bengaluru", "Mumbai", "Delhi", "Chennai", "Hyderabad", "Pune", "Kolkata", "Ahmedabad"].map((c) => (
                       <span key={c}
-                        className="text-[12px] font-medium bg-[#f0f0f0] text-[#555]
+                        className="text-[12px] font-medium bg-[#f0f0f0] text-[#374151]
                           px-3 py-1 border border-[#e5e5e5]">
                         {c}
                       </span>
@@ -197,9 +189,10 @@ export default function JoinNextPage() {
             </div>
           </div>
         </section>
+        </AnimatedSection>
 
-        {/* ── Why join next ── */}
-        <section className="py-16 md:py-20 bg-white">
+        <AnimatedSection>
+        <section className="py-16 md:py-20 bg-[#F4F9F5]">
           <div className="max-w-200 mx-auto px-6 text-center">
             <h2 className="font-figtree font-black text-[28px] md:text-[36px] tracking-tight text-dark mb-12 leading-tight">
               Why you should be at the next edition
@@ -219,11 +212,11 @@ export default function JoinNextPage() {
                   body: "Investor roundtables. Founder roundtables. Creator features. Partner credits. Stuff that doesn't just feel good for a day.",
                 },
               ].map((item) => (
-                <div key={item.title} className="p-6 bg-[#fafafa] border border-black/6">
+                <div key={item.title} className="p-6 bg-white border border-[#009E52]/10">
                   <h3 className="font-figtree font-bold text-[16px] text-dark mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-[13px] text-[#666] leading-relaxed">{item.body}</p>
+                  <p className="text-[13px] text-[#374151] leading-relaxed">{item.body}</p>
                 </div>
               ))}
             </div>
@@ -233,9 +226,9 @@ export default function JoinNextPage() {
                 <button
                   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                   className="inline-flex items-center gap-2
-                    bg-primary hover:bg-[#1a47d6] text-white
+                    bg-primary hover:bg-[#0B2265] text-white
                     font-semibold text-[15px]
-                    px-7 py-3.5 transition-all duration-200"
+                    px-7 py-3.5 transition-all duration-200 rounded-full"
                 >
                   Sign up for next edition <ArrowRight size={16} />
                 </button>
@@ -243,6 +236,7 @@ export default function JoinNextPage() {
             )}
           </div>
         </section>
+        </AnimatedSection>
 
       </main>
     </div>

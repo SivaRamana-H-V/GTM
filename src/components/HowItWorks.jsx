@@ -1,162 +1,189 @@
 import React from 'react';
+import useInView from '../hooks/useInView';
 
-// Simplified structural data matching your preferred array layout
-const TIMELINE_PHASES = [
+const JOURNEY_STEPS = [
     {
-        year: "Phase 1",
-        title: "Apply & Register",
-        description: "Fill out the application to share your interest, persona, and background setup metrics.",
-        side: "left",
-        color: "#1e3a8a", // Deep Indigo
-        iconText: "01"
+        number: 1,
+        title: "Apply",
+        description: "Fill out the application to share your interest, passion, and background."
     },
     {
-        year: "Phase 2",
+        number: 2,
         title: "Get Selected",
-        description: "If chosen for Round 2, you'll receive an official email validation sequence pass.",
-        side: "right",
-        color: "#0d9488", // Teal Accent
-        iconText: "02"
+        description: "If chosen for Round 2, you'll receive an email invitation."
     },
     {
-        year: "Phase 3",
+        number: 3,
         title: "Video Pitch",
-        description: "Submit a short video showcasing who you are, what you're building, and your vision trajectory.",
-        side: "left",
-        color: "#7e22ce", // Deep Purple
-        iconText: "03"
+        description: "Submit a short video: who you are, what you're building, and why you."
     },
     {
-        year: "Phase 4",
+        number: 4,
         title: "#HackInPublic",
-        description: "Share your daily building updates publicly online and tag your growth portfolios.",
-        side: "right",
-        color: "#ea580c", // Vivid Orange
-        iconText: "04"
+        description: "Share your video publicly and tag @emergentlabs."
     },
     {
-        year: "Phase 5",
+        number: 5,
         title: "Fast-Track Review",
-        description: "Public submissions get directly evaluated by judges for the main matrix pool gates.",
-        side: "left",
-        color: "#dc2626", // Crimson Red
-        iconText: "05"
+        description: "Public submissions get reviewed for the final round faster."
     },
     {
-        year: "Phase 6",
+        number: 6,
         title: "Final Acceptance",
-        description: "Receive your unique encrypted entry credentials pass to access the active venue floors.",
-        side: "right",
-        color: "#16a34a", // Vibrant Green
-        iconText: "06"
+        description: "Receive your official acceptance letter to attend VibeCon."
     }
 ];
 
-export default function HowItWorks() {
-    return (
-        <section id="how-it-works" className="relative min-h-screen bg-white py-24 px-6 md:px-12 select-none overflow-hidden">
+{/* ── UNIFIED PERFORMANCE ANIMATION WRAPPER ENGINE ── */ }
+function TimelineItem({ children, delay, isEven, step, nodeColor }) {
+    const [ref, inView] = useInView({ threshold: 0.15 });
 
-            {/* Central Section Header Layout */}
-            <div className="w-full text-center mb-24 relative z-10">
-                <h2 className="font-sans font-black text-[32px] sm:text-[46px] tracking-tight text-slate-900 uppercase">
-                    How It Works — Phases
-                </h2>
-                <div className="w-24 h-1 bg-slate-200 mx-auto mt-4 rounded-full"></div>
+    return (
+        <div
+            ref={ref}
+            className={`relative flex items-center w-full transition-all duration-700 ease-out
+                ${isEven ? 'justify-end' : 'justify-start'}
+                ${inView ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-[0.98]'}
+            `}
+            style={{ transitionDelay: `${delay}ms` }}
+            data-testid={`step-${step.number - 1}`}
+        >
+            {/* Pinned Middle Timeline Number Node (Locked directly inside the relative flex track row) */}
+            <div className="absolute left-1/2 -translate-x-1/2 z-20">
+                <div
+                    className="w-10.5 h-10.5 rounded-full border-4 border-white shadow-md flex items-center justify-center hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer select-none"
+                    style={{ backgroundColor: nodeColor }}
+                >
+                    <span className="text-white font-sans font-black text-[16px]">{step.number}</span>
+                </div>
             </div>
 
-            {/* TIMELINE TRACK WRAPPER */}
-            <div className="relative max-w-5xl w-full mx-auto flex flex-col items-center z-10">
+            {/* Asymmetric Description Card Content Layout Block */}
+            <div className={`w-[calc(50%-45px)] ${isEven ? 'ml-auto text-left' : 'mr-auto text-right'}`}>
+                <div className={`p-5 bg-white/85 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm hover:shadow-md transition-all duration-300`}>
+                    <h3 className="font-sans font-black text-[24px] mb-2" style={{ color: nodeColor }}>
+                        {step.title}
+                    </h3>
+                    <p className="text-[16px] text-slate-700 font-medium leading-relaxed">
+                        {step.description}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-                {/* ── BACKGROUND VECTOR SPINE (DESKTOP) ── */}
-                {/* Uses explicit multi-bezier curvature segments matching the repeating wave node flow */}
-                <div className="absolute inset-y-0 w-24 hidden md:block pointer-events-none left-1/2 -translate-x-1/2 h-[calc(100%-120px)] top-12">
-                    <svg className="w-full h-full" viewBox="0 0 100 1000" preserveAspectRatio="none">
-                        <path
-                            d="M 50 0 
-                 Q 10 83, 50 166 
-                 Q 90 249, 50 332 
-                 Q 10 415, 50 498 
-                 Q 90 581, 50 664 
-                 Q 10 747, 50 830 
-                 Q 90 913, 50 1000"
-                            fill="none"
-                            stroke="url(#spine-gradient)"
-                            strokeWidth="6"
-                            strokeLinecap="round"
-                        />
-                        <defs>
-                            <linearGradient id="spine-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stopColor="#1e3a8a" />
-                                <stop offset="20%" stopColor="#0d9488" />
-                                <stop offset="40%" stopColor="#7e22ce" />
-                                <stop offset="60%" stopColor="#ea580c" />
-                                <stop offset="80%" stopColor="#dc2626" />
-                                <stop offset="100%" stopColor="#16a34a" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
+{/* ── MOBILE ROW ANIMATION STEP ENGINE ── */ }
+function MobileStep({ step, delay, nodeColor, idx }) {
+    const [ref, inView] = useInView({ threshold: 0.1 });
+
+    return (
+        <div
+            ref={ref}
+            className={`relative flex gap-4 w-full transition-all duration-500 ease-out
+                ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}
+            `}
+            style={{ transitionDelay: `${delay}ms` }}
+            data-testid={`step-mobile-${idx}`}
+        >
+            <div className="relative z-10 shrink-0">
+                <div
+                    className="w-10 h-10 rounded-full border-2 border-white shadow-sm flex items-center justify-center font-sans font-black text-[16px] text-white"
+                    style={{ backgroundColor: nodeColor }}
+                >
+                    {step.number}
+                </div>
+            </div>
+            <div className="flex-1 p-4 bg-white/85 backdrop-blur-sm border border-primary/10 rounded-xl shadow-sm">
+                <h3 className="font-sans font-black text-[18px] mb-1" style={{ color: nodeColor }}>
+                    {step.title}
+                </h3>
+                <p className="text-[14px] text-slate-700 font-medium leading-relaxed">
+                    {step.description}
+                </p>
+            </div>
+        </div>
+    );
+}
+
+export default function HowItWorks() {
+    const [headerRef, headerInView] = useInView({ threshold: 0.2 });
+
+    return (
+        <section
+            id="timeline"
+            data-testid="timeline-section"
+            className="relative overflow-hidden min-h-screen select-none bg-cover bg-center bg-no-repeat py-20 md:py-28"
+            style={{
+                backgroundImage: 'url("../assets/How_to_Apply.png")',
+                backgroundPosition: 'center bottom'
+            }}
+        >
+            <div className="max-w-285 mx-auto px-6 md:px-12 pb-32 md:pb-48">
+
+                {/* Section Header */}
+                <div
+                    ref={headerRef}
+                    className={`text-center mb-20 transition-all duration-700 ease-out ${headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                        }`}
+                >
+                    <img
+                        alt="Your Journey"
+                        className="h-8 mx-auto mb-4 object-contain"
+                        src="https://customer-assets.emergentagent.com/job_vibebattle-india/artifacts/hwh4fkh6_your%20journey%20pill.svg"
+                    />
+                    <h2 className="font-sans font-black text-[32px] md:text-[55px] uppercase tracking-tight text-primary leading-none">
+                        Here's how it works
+                    </h2>
+                    <div className="flex items-center justify-center gap-2 mt-4">
+                        <div className="w-2 h-2 rounded-full bg-primary"></div>
+                        <div className="w-20 h-px bg-primary/30"></div>
+                        <div className="w-2 h-2 rounded-full bg-primary"></div>
+                    </div>
                 </div>
 
-                {/* ── MOBILE-ONLY STRAIGHT SPINE LINE ── */}
-                <div className="absolute top-6 bottom-6 left-6 md:hidden w-1 bg-slate-200 rounded-full z-0"></div>
+                {/* ── MOBILE TIMELINE VIEW ── */}
+                <div className="md:hidden relative px-2">
+                    {/* Vertical Timeline Spine Track */}
+                    <div className="absolute left-6.75 top-6 bottom-6 w-0.5 bg-linear-to-b from-primary via-secondary to-primary opacity-60" />
 
-                {/* ── PHASES GRID MATRIX LOOP ── */}
-                {TIMELINE_PHASES.map((phase, idx) => (
-                    <div
-                        key={idx}
-                        className={`
-              relative w-full flex flex-col md:flex-row items-start md:items-center mb-16 md:mb-24 last:mb-0 pl-16 md:pl-0
-              ${phase.side === 'left' ? 'md:flex-row-reverse' : ''}
-            `}
-                    >
-                        {/* 1. TEXT INFO BLOCK SIDE */}
-                        <div className="w-full md:w-1/2 flex justify-start md:justify-center px-4 md:px-12 z-10">
-                            <div className="max-w-md w-full text-left">
-                                <span
-                                    className="font-mono font-black text-2xl tracking-wider block mb-1"
-                                    style={{ color: phase.color }}
-                                >
-                                    {phase.year}
-                                </span>
-                                <h3 className="font-sans font-black text-[22px] text-slate-800 leading-tight mb-3">
-                                    {phase.title}
-                                </h3>
-                                <p className="text-[14px] text-slate-500 font-medium leading-relaxed">
-                                    {phase.description}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* 2. CORE INTERCONNECTED NODE (CENTER BUTTON ANCHOR) */}
-                        <div className="absolute left-1 md:left-1/2 top-0 md:top-auto w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-md border-4 z-20 transform translate-x-0 md:-translate-x-1/2 transition-transform duration-300 hover:scale-110 cursor-pointer"
-                            style={{ borderColor: phase.color }}
-                        >
-                            <div
-                                className="w-5 h-5 rounded-full flex items-center justify-center font-sans text-[9px] font-black text-white"
-                                style={{ backgroundColor: phase.color }}
-                            >
-                                {phase.iconText}
-                            </div>
-                        </div>
-
-                        {/* 3. MEDIA / EXTRA ASSET GRAPHIC ASSIGNMENT SIDE */}
-                        <div className="w-full md:w-1/2 flex justify-start md:justify-center items-center px-4 md:px-12 mt-4 md:mt-0 z-10">
-                            <div className="w-40 h-28 bg-slate-50 rounded-lg border border-slate-100 flex flex-col items-center justify-center gap-2 p-3 shadow-sm hover:border-slate-200 transition-colors">
-                                {/* Visual Placeholder box to mimic mini image layout cards like flag/trophy stamps from sample */}
-                                <div
-                                    className="w-10 h-10 rounded-md opacity-20 transform rotate-12 flex items-center justify-center font-mono text-sm"
-                                    style={{ backgroundColor: phase.color, color: '#fff' }}
-                                >
-                                    ✦
-                                </div>
-                                <span className="text-[11px] font-mono font-bold tracking-wider text-slate-400 uppercase">
-                                    Asset Layer
-                                </span>
-                            </div>
-                        </div>
-
+                    <div className="space-y-8">
+                        {JOURNEY_STEPS.map((step, idx) => {
+                            const nodeColor = idx % 2 === 0 ? '#009E52' : '#1035A1';
+                            return (
+                                <MobileStep
+                                    key={idx}
+                                    step={step}
+                                    idx={idx}
+                                    delay={idx * 100}
+                                    nodeColor={nodeColor}
+                                />
+                            );
+                        })}
                     </div>
-                ))}
+                </div>
+
+                {/* ── DESKTOP TIMELINE VIEW ── */}
+                <div className="hidden md:block relative mt-16">
+                    {/* Center Spine Vertical Alignment Track Line */}
+                    <div className="absolute left-1/2 -translate-x-1/2 w-0.5 bg-linear-to-b from-primary via-secondary to-primary top-4 bottom-4 opacity-70" />
+
+                    <div className="space-y-12 max-w-210 mx-auto">
+                        {JOURNEY_STEPS.map((step, idx) => {
+                            const isEven = idx % 2 === 0;
+                            const nodeColor = isEven ? '#009E52' : '#1035A1';
+                            return (
+                                <TimelineItem
+                                    key={idx}
+                                    step={step}
+                                    isEven={isEven}
+                                    nodeColor={nodeColor}
+                                    delay={idx * 150}
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
 
             </div>
         </section>

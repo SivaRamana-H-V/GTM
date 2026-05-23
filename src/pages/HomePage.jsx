@@ -8,23 +8,15 @@ import HeroSection from "../components/HeroSection";
 import { PartnersSection } from "../components/PartnersSection";
 import { FaqSection } from "../components/FaqSection";
 import { ASSETS, JUDGES, PARTNER_LOGOS, PHASES } from "../components/DATA";
-import { SectionPill, HeroSponsorBadge } from "../components/Components";
+import { SectionPill, HeroSponsorBadge, AnimatedSection, AnimatedItem } from "../components/Components";
 
-
-
-// ─── HomePage ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
-    <div className="bg-white">
-      {/* ═══════════════════════════════════════════════════════
-          HERO
-      ═══════════════════════════════════════════════════════ */}
+    <div className="bg-mint">
       <HeroSection />
 
-      {/* ═══════════════════════════════════════════════════════
-          "HOW WE'RE DOING THIS" — Emergent section
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-[#fafafa] border-y border-black/6">
+      <AnimatedSection>
+      <section className="py-16 md:py-24 bg-white border-y border-primary/8">
         <div className="max-w-300 mx-auto px-6 md:px-12">
           <SectionPill src={ASSETS.howWeDoingPill} alt="How we are doing this" />
 
@@ -33,12 +25,12 @@ export default function HomePage() {
               <h2 className="font-figtree font-black text-[32px] md:text-[44px] tracking-tight text-dark mb-5 leading-tight">
                 The best builders we've seen share two things.
               </h2>
-              <p className="text-[16px] text-[#555] leading-relaxed mb-6">
+              <p className="text-[16px] text-slate-700 leading-relaxed mb-6">
                 They build, and they can explain what they built. That's the only
                 filter, because that one act tells us more than any application
                 ever could.
               </p>
-              <p className="text-[16px] text-[#555] leading-relaxed mb-8">
+              <p className="text-[16px] text-slate-700 leading-relaxed mb-8">
                 All projects must be built using{" "}
                 <a href="https://app.emergent.sh" target="_blank" rel="noopener noreferrer"
                   className="text-primary font-semibold hover:underline">
@@ -59,14 +51,13 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      </AnimatedSection>
 
-      {/* ═══════════════════════════════════════════════════════
-          THE PANEL — Judges
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 md:py-24 bg-white overflow-hidden">
+      <AnimatedSection>
+      <section className="py-16 md:py-24 bg-mint overflow-hidden">
         <div className="max-w-300 mx-auto px-6 md:px-12">
           <SectionPill src={ASSETS.thePanelPill} alt="The panel" />
-          <p className="text-center text-[15px] text-[#555] mb-12 max-w-125 mx-auto leading-relaxed">
+          <p className="text-center text-[15px] text-slate-700 mb-12 max-w-125 mx-auto leading-relaxed">
             A{" "}
             <span className="font-semibold text-dark">
               high signal judging panel
@@ -74,13 +65,12 @@ export default function HomePage() {
             of top founders, investors, and operators.
           </p>
 
-          {/* Carousel — horizontal scroll on mobile, grid on desktop */}
           <div className="flex judges-carousel gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:overflow-visible md:pb-0 scrollbar-hide">
             {JUDGES.map((judge, i) => (
+              <AnimatedItem key={i} delay={i * 100}>
               <div
-                key={i}
                 className="shrink-0 w-65 md:w-auto
-                  bg-[#fafafa] border border-black/6
+                  bg-white border border-primary/10
                   p-5 flex flex-col gap-3"
               >
                 <div className="w-full aspect-4/3 overflow-hidden bg-[#f0f0f0]">
@@ -95,19 +85,19 @@ export default function HomePage() {
                   <p className="font-figtree font-bold text-[16px] text-dark leading-snug">
                     {judge.name}
                   </p>
-                  <p className="text-[13px] text-[#666] mt-0.5 leading-snug">
+                  <p className="text-[13px] text-slate-700 mt-0.5 leading-snug">
                     {judge.title}
                   </p>
                 </div>
               </div>
+              </AnimatedItem>
             ))}
           </div>
         </div>
       </section>
+      </AnimatedSection>
 
-      {/* ═══════════════════════════════════════════════════════
-          PRIZES
-      ═══════════════════════════════════════════════════════ */}
+      <AnimatedSection>
       <section id="prizes" className="py-16 md:py-24 bg-dark text-white">
         <div className="max-w-300 mx-auto px-6 md:px-12">
           <SectionPill src={ASSETS.section3Pill} alt="Prizes" />
@@ -124,18 +114,16 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Prize cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            {/* Grand prize */}
             <div className="md:col-span-3 bg-primary p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
               <div className="flex items-center gap-4">
                 <Trophy size={32} className="shrink-0" />
                 <div>
                   <p className="text-[12px] font-semibold uppercase tracking-widest opacity-80 mb-1">Grand Prize</p>
                   <h3 className="font-figtree font-black text-[28px] md:text-[36px] leading-tight">
-                    A direct YC interview
+                    ₹1 LAKH CASH PRIZE
                   </h3>
-                  <p className="text-[14px] opacity-70 mt-1">For an upcoming Y Combinator batch</p>
+                  <p className="text-[14px] opacity-70 mt-1">For the top builder at GTM Conclave</p>
                 </div>
               </div>
               <Link
@@ -143,19 +131,19 @@ export default function HomePage() {
                 className="shrink-0 inline-flex items-center gap-2
                   bg-white text-primary hover:bg-[#f0f0f0]
                   font-bold text-[14px]
-                  px-6 py-3 transition-all duration-200"
+                  px-6 py-3 transition-all duration-200 rounded-full"
               >
                 Apply Now <ArrowRight size={15} />
               </Link>
             </div>
 
-            {/* Cash prizes */}
             {[
-              { place: "1st Place", amount: "$5,000", label: "Cash Prize" },
-              { place: "2nd Place", amount: "$3,000", label: "Cash Prize" },
-              { place: "3rd Place", amount: "$2,000", label: "Cash Prize" },
+              { place: "1st Place", amount: "₹50,000", label: "Cash Prize" },
+              { place: "2nd Place", amount: "₹30,000", label: "Cash Prize" },
+              { place: "3rd Place", amount: "₹20,000", label: "Cash Prize" },
             ].map((p, i) => (
-              <div key={i} className="bg-white/6 border border-white/8 p-6">
+              <AnimatedItem key={i} delay={i * 100}>
+              <div className="bg-white/6 border border-white/8 p-6">
                 <p className="text-[11px] font-semibold uppercase tracking-widest text-white/50 mb-2">
                   {p.place}
                 </p>
@@ -164,11 +152,12 @@ export default function HomePage() {
                 </p>
                 <p className="text-[14px] text-white/60">{p.label}</p>
               </div>
+              </AnimatedItem>
             ))}
           </div>
 
-          {/* Credits & perks */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <AnimatedItem delay={100}>
             <div className="bg-white/4 border border-white/6 p-6">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-white/40 mb-4">
                 Platform Credits
@@ -189,6 +178,8 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
+            </AnimatedItem>
+            <AnimatedItem delay={200}>
             <div className="bg-white/4 border border-white/6 p-6">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-white/40 mb-4">
                 Additional Opportunities
@@ -209,28 +200,18 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
+            </AnimatedItem>
           </div>
         </div>
       </section>
+      </AnimatedSection>
 
-      {/* ═══════════════════════════════════════════════════════
-          HOW IT WORKS — PHASES
-      ═══════════════════════════════════════════════════════ */}
       <HowItWorks />
 
-      {/* ═══════════════════════════════════════════════════════
-          PARTNERS
-      ═══════════════════════════════════════════════════════ */}
       <PartnersSection />
 
-      {/* ═══════════════════════════════════════════════════════
-          RULES & REGULATIONS
-      ═══════════════════════════════════════════════════════ */}
       <EventGallery />
 
-      {/* ═══════════════════════════════════════════════════════
-          FAQ
-      ═══════════════════════════════════════════════════════ */}
       <FaqSection />
 
     </div>

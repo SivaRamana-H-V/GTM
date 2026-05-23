@@ -1,23 +1,22 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import { AnimatedSection } from "./Components";
 
 export default function Footer() {
     const year = new Date().getFullYear();
 
     return (
         <footer 
-            className="relative bg-[#2563eb] text-white overflow-hidden py-16 px-6 md:px-12 flex flex-col justify-between min-h-100 select-none"
+            className="relative bg-secondary text-white overflow-hidden py-16 px-6 md:px-12 flex flex-col justify-between min-h-100 select-none"
             style={{
-                // Replicating the distinct blue technical grid lines layout from the brand theme
                 backgroundImage: `
-                    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)
+                    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px)
                 `,
                 backgroundSize: '40px 40px',
                 backgroundPosition: 'center top'
             }}
         >
-            {/* Retro Pixel-Art Accent Crosses (Absolute Positioned Shards exactly like the image) */}
             <div className="absolute top-[15%] left-[5%] text-white/20 font-mono text-3xl pointer-events-none tracking-tight">
                 ░░ ░░<br/>░░ ░░
             </div>
@@ -27,8 +26,7 @@ export default function Footer() {
             <div className="absolute bottom-[30%] right-[25%] text-white/20 font-mono text-2xl pointer-events-none">▒▒<br/>▒▒</div>
             <div className="absolute top-[45%] right-[4%] text-white/10 font-mono text-4xl pointer-events-none">████</div>
 
-            {/* CENTER BRAND TEXT MODULE */}
-            <div className="max-w-4xl mx-auto text-center my-auto z-10 flex flex-col items-center justify-center">
+            <AnimatedSection className="max-w-4xl mx-auto text-center my-auto z-10 flex flex-col items-center justify-center">
                 <h2 className="font-figtree font-black text-[38px] sm:text-[56px] lg:text-[64px] leading-tight tracking-tight mb-2">
                     Ready to prove you belong?
                 </h2>
@@ -36,20 +34,18 @@ export default function Footer() {
                     Vibecode your way to Y Combinator.
                 </p>
                 
-                {/* White Call To Action Button Widget */}
                 <a
                     href="/register"
-                    className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-[#2563eb] font-bold text-[15px] px-10 py-4 shadow-lg transition-all duration-150 rounded-xs"
+                    className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-primary font-bold text-[15px] px-10 py-4 shadow-lg transition-all duration-150 rounded-full hover:scale-[1.02] active:scale-95"
                 >
                     Apply Now
                     <ArrowRight size={16} strokeWidth={2.5} />
                 </a>
-            </div>
+            </AnimatedSection>
 
-            {/* BOTTOM MINIMAL FOOTER ROW BAR */}
             <div className="max-w-360 w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 pt-12 z-10 text-white/60 text-[13px] font-medium">
                 <div>
-                    © {year} VibeCon. All rights reserved.
+                    © {year} GTM Conclave. All rights reserved.
                 </div>
                 
                 <div className="flex items-center gap-6">
